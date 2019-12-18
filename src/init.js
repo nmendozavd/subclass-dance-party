@@ -7,7 +7,7 @@ $(document).ready(function() {
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
     var dancer = new dancerMakerFunction(
-      $('body').height() * Math.random() + 50,
+      $('body').height() * Math.random(),
       $('body').width() * Math.random(),
       Math.random() * 1000
     );
@@ -24,13 +24,13 @@ $(document).ready(function() {
     $('.dancer1').css(dancer1StyleSettings);
     // append the dancer to the document
     $('body').append(dancer.$node);
-     // add dancer to array
-    window.dancers.push(dancer);
+    // add dancer to array
+    // window.dancers.push(dancer);
   });
 
   // create second dancer button
   $('.addDancerButton2').on('click', function(event) {
-    var dancerMakerFunctionName = $(this).data ('dancer-maker-function-name2');
+    var dancerMakerFunctionName = $(this).data ('dancer-maker-function-name');
     // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
     // make a dancer with a random position
@@ -61,12 +61,10 @@ $(document).ready(function() {
 
   // create line up button
   $('.lineUpButton').on('click', function(event) {
-    // set dancers to variable
-    var dancers = window.dancers;
     // loop through each dancer and change class to be uniform
-    dancers.forEach(function (dancer) {
-      dancer.setPosition(500, $('body').width() * Math.random());
-    });
+    for (var i = 0; i < window.dancers.length; i++) {
+      window.dancers[i].lineUp();
+    }
 
   });
 });
